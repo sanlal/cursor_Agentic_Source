@@ -1,4 +1,5 @@
 # Cursor: The Agentic Way
+Link: https://sanlal.github.io/cursor_Agentic_Source/
 
 An interactive teaching site about Cursor (the AI code editor) plus an optional slide deck for video recording. Dark hand-drawn neon theme. All artwork is original SVG &mdash; no copyright risk for YouTube or any other use.
 

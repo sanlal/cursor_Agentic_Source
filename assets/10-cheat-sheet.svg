@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Kalam, Caveat, cursive">
+  <defs>
+    <filter id="w10" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="37"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.2"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="700" fill="#0F1A2E"/>
+
+  <!-- Title -->
+  <text x="500" y="55" font-size="40" fill="#F4F1E8" text-anchor="middle" font-weight="700">CHEAT SHEET</text>
+  <line x1="380" y1="68" x2="620" y2="68" stroke="#FF8C42" stroke-width="4" filter="url(#w10)"/>
+
+  <!-- Left column: shortcuts on paper -->
+  <g filter="url(#w10)" transform="translate(60 110)">
+    <rect x="0" y="0" width="380" height="540" rx="14" fill="none" stroke="#FFD93D" stroke-width="4"/>
+    <!-- holes (notebook style) -->
+    <circle cx="22" cy="60" r="6" fill="none" stroke="#FFD93D" stroke-width="2"/>
+    <circle cx="22" cy="180" r="6" fill="none" stroke="#FFD93D" stroke-width="2"/>
+    <circle cx="22" cy="300" r="6" fill="none" stroke="#FFD93D" stroke-width="2"/>
+    <circle cx="22" cy="420" r="6" fill="none" stroke="#FFD93D" stroke-width="2"/>
+  </g>
+  <text x="250" y="155" font-size="26" fill="#FFD93D" text-anchor="middle" font-weight="700">Keyboard</text>
+
+  <g font-size="19" fill="#F4F1E8">
+    <text x="80" y="195"><tspan fill="#FFD93D">Tab</tspan>           accept autocomplete</text>
+    <text x="80" y="225"><tspan fill="#3DD9D6">Ctrl+K</tspan>        inline edit</text>
+    <text x="80" y="255"><tspan fill="#3DD9D6">Ctrl+L</tspan>        Chat sidebar</text>
+    <text x="80" y="285"><tspan fill="#3DD9D6">Ctrl+I</tspan>        Agent (autonomous)</text>
+    <text x="80" y="315"><tspan fill="#3DD9D6">Ctrl+N</tspan>        new chat</text>
+    <text x="80" y="345"><tspan fill="#3DD9D6">Ctrl+Shift+L</tspan>  add selection to chat</text>
+    <text x="80" y="375"><tspan fill="#5FE388">@file</tspan>         attach a file</text>
+    <text x="80" y="405"><tspan fill="#5FE388">@codebase</tspan>     full-repo search</text>
+    <text x="80" y="435"><tspan fill="#5FE388">@docs</tspan>         library docs</text>
+    <text x="80" y="465"><tspan fill="#5FE388">@web</tspan>          live web search</text>
+    <text x="80" y="495"><tspan fill="#5FE388">@git</tspan>          diff / commits</text>
+    <text x="80" y="525"><tspan fill="#FF8C42">Esc</tspan>           stop / reject</text>
+    <text x="80" y="555"><tspan fill="#FF8C42">Ctrl+Enter</tspan>    run in Agent</text>
+  </g>
+
+  <!-- Right column: decision tree -->
+  <text x="730" y="155" font-size="26" fill="#5FE388" text-anchor="middle" font-weight="700">Which mode?</text>
+
+  <!-- Root question -->
+  <g filter="url(#w10)" transform="translate(620 180)">
+    <rect x="0" y="0" width="220" height="60" rx="14" fill="none" stroke="#3DD9D6" stroke-width="4"/>
+    <text x="110" y="38" font-size="18" fill="#3DD9D6" text-anchor="middle">Need code changed?</text>
+  </g>
+
+  <!-- Branches -->
+  <line x1="680" y1="240" x2="620" y2="290" stroke="#FFD93D" stroke-width="3" filter="url(#w10)"/>
+  <line x1="780" y1="240" x2="840" y2="290" stroke="#FFD93D" stroke-width="3" filter="url(#w10)"/>
+  <text x="630" y="280" font-size="16" fill="#FFD93D">NO</text>
+  <text x="800" y="280" font-size="16" fill="#FFD93D">YES</text>
+
+  <!-- NO branch -> Chat -->
+  <g filter="url(#w10)" transform="translate(490 295)">
+    <rect x="0" y="0" width="160" height="56" rx="14" fill="none" stroke="#FFD93D" stroke-width="4"/>
+    <text x="80" y="35" font-size="20" fill="#FFD93D" text-anchor="middle">CHAT</text>
+  </g>
+
+  <!-- YES branch -> next question -->
+  <g filter="url(#w10)" transform="translate(720 295)">
+    <rect x="0" y="0" width="240" height="56" rx="14" fill="none" stroke="#3DD9D6" stroke-width="4"/>
+    <text x="120" y="35" font-size="16" fill="#3DD9D6" text-anchor="middle">Many files / unclear?</text>
+  </g>
+
+  <line x1="780" y1="351" x2="720" y2="400" stroke="#FFD93D" stroke-width="3" filter="url(#w10)"/>
+  <line x1="880" y1="351" x2="930" y2="400" stroke="#FFD93D" stroke-width="3" filter="url(#w10)"/>
+  <text x="730" y="395" font-size="16" fill="#FFD93D">YES</text>
+  <text x="895" y="395" font-size="16" fill="#FFD93D">NO</text>
+
+  <!-- Plan and Agent -->
+  <g filter="url(#w10)" transform="translate(580 410)">
+    <rect x="0" y="0" width="160" height="56" rx="14" fill="none" stroke="#B388FF" stroke-width="4"/>
+    <text x="80" y="35" font-size="20" fill="#B388FF" text-anchor="middle">PLAN</text>
+  </g>
+  <g filter="url(#w10)" transform="translate(820 410)">
+    <rect x="0" y="0" width="160" height="56" rx="14" fill="none" stroke="#5FE388" stroke-width="4"/>
+    <text x="80" y="35" font-size="20" fill="#5FE388" text-anchor="middle">AGENT</text>
+  </g>
+
+  <!-- Mascot waving goodbye in bottom-right -->
+  <g filter="url(#w10)" stroke="#3DD9D6" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(820 570)">
+    <line x1="0" y1="-60" x2="0" y2="-48"/>
+    <circle cx="0" cy="-64" r="4" fill="#FFD93D" stroke="#FFD93D"/>
+    <rect x="-30" y="-48" width="60" height="44" rx="8"/>
+    <circle cx="-11" cy="-32" r="5" fill="#FFD93D" stroke="#FFD93D"/>
+    <circle cx="11" cy="-32" r="5" fill="#FFD93D" stroke="#FFD93D"/>
+    <path d="M -8 -16 Q 0 -10 8 -16"/>
+    <line x1="-30" y1="-12" x2="-50" y2="-25"/>
+    <line x1="30" y1="-12" x2="50" y2="-30"/>
+  </g>
+  <text x="820" y="640" font-size="20" fill="#3DD9D6" text-anchor="middle">happy coding!</text>
+</svg>

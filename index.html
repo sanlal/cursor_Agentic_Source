@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F1A2E" />
+  <meta name="description" content="An interactive guide to Cursor (the AI code editor) - from your first Tab keystroke to background agents. 10 expandable lessons, beginner to advanced." />
+
+  <meta property="og:title" content="Cursor: The Agentic Way - Interactive Guide" />
+  <meta property="og:description" content="10 lessons from beginner to advanced. Tab, Cmd-K, @-references, Agent, Plan, Rules, MCP, TDD, model selection." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/01-title.svg" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <title>Cursor: The Agentic Way - Interactive Guide</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/01-title.svg" />
+  <link rel="stylesheet" href="learn.css" />
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand">
+      <span class="brand-dot"></span>
+      <span>Cursor: The Agentic Way</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="btn" id="expand-all">Expand all</button>
+      <button class="btn" id="collapse-all">Collapse all</button>
+      <a class="btn primary" href="slides.html">Slide deck</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <p class="eyebrow">An interactive guide</p>
+  <h1>Cursor<br><span class="accent">the agentic way</span></h1>
+  <p class="lede">
+    Everything most tutorials skip &mdash; from your very first <kbd>Tab</kbd> keystroke
+    all the way to running background agents in the cloud.
+    Click any lesson below to dive in.
+  </p>
+  <img src="assets/01-title.svg" alt="Cursor agent mascot" class="hero-mascot" />
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num">10</span>
+      <span class="label">lessons</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num orange">~30</span>
+      <span class="label">minutes</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num green">basic &rarr; advanced</span>
+      <span class="label">paced for everyone</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TABLE OF CONTENTS ============== -->
+<nav class="toc" id="contents" aria-label="Table of contents">
+  <div class="toc-head">
+    <h2>What you'll learn</h2>
+  </div>
+  <ol>
+    <li><a href="#lesson-1"><span class="title">What is Cursor?</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-2"><span class="title">The 4 ways to talk to Cursor</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-3"><span class="title">The <code>@</code> symbol &mdash; feeding context</span> <span class="badge basic">basic</span></a></li>
+    <li><a href="#lesson-4"><span class="title">Agent mode in depth</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-5"><span class="title">Plan mode &mdash; design before code</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-6"><span class="title">Rules &amp; <code>AGENTS.md</code></span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#lesson-7"><span class="title">MCP, Hooks &amp; Background Agents</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#lesson-8"><span class="title">TDD with agents</span> <span class="badge advanced">advanced</span></a></li>
+    <li><a href="#lesson-9"><span class="title">Model selection</span> <span class="badge intermediate">intermediate</span></a></li>
+    <li><a href="#lesson-10"><span class="title">The cheat sheet</span> <span class="badge wrap">wrap-up</span></a></li>
+  </ol>
+</nav>
+
+<!-- ============== LESSONS ============== -->
+<main class="lessons">
+
+<!-- ============== LESSON 1 ============== -->
+<details class="lesson" id="lesson-1">
+  <summary>
+    <span class="num">01</span>
+    <span class="heading">
+      <span class="title">What is Cursor?</span>
+      <span class="subtitle">The AI-native IDE in 60 seconds.</span>
+    </span>
+    <span class="meta">
+      <span class="badge basic">basic</span>
+      <span class="reading-time">3 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Cursor is a fork of VS Code by Anysphere with AI as a first-class citizen. Your keybindings and extensions still work. The AI sees your <em>entire</em> codebase, not just one file.</div>
+
+    <div class="illustration">
+      <img src="assets/02-what-is-cursor.svg" alt="VS Code plus an AI brain equals Cursor" />
+      <div class="caption">VS Code + AI brain = Cursor</div>
+    </div>
+
+    <h3>Why it matters</h3>
+    <p>
+      If you've used VS Code, you already know 90% of Cursor. The file tree, command palette, terminal, debug console &mdash; identical. The 10% that's different is the part that changes how you ship code: Cursor indexes your repo into a vector database so any prompt can reference any file, and the AI uses real tools (read, edit, search, shell) rather than just spitting text.
+    </p>
+
+    <h3>What makes it different from Copilot</h3>
+    <ul>
+      <li><strong>Repo-wide context.</strong> Copilot reads what's on screen. Cursor reads what's on disk, indexed and queryable.</li>
+      <li><strong>Model choice.</strong> Swap Claude / GPT / Gemini / Grok per message. Different tasks deserve different models.</li>
+      <li><strong>Real tool use.</strong> Cursor can run <code>npm test</code>, open files, search, edit &mdash; not just suggest text.</li>
+      <li><strong>Privacy Mode.</strong> One toggle in settings = code never leaves your machine for training.</li>
+    </ul>
+
+    <h3>Install &amp; pricing</h3>
+    <ol>
+      <li>Download from <code>cursor.com</code>.</li>
+      <li>Sign in with GitHub or Google.</li>
+      <li>On first run, click <em>"Import VS Code settings"</em> &mdash; extensions, keybindings, themes carry over in ~30 seconds.</li>
+      <li>Open any repo. Press <kbd>Tab</kbd> on a half-written line. You're done.</li>
+    </ol>
+    <div class="cols-2">
+      <div class="col-card"><h4>Free (Hobby)</h4><p>2,000 completions / month.<br>50 slow premium requests.<br>Great for trying it out.</p></div>
+      <div class="col-card"><h4>Pro &mdash; $20/mo</h4><p>Unlimited completions.<br>500 fast premium requests.<br>The everyday-coder tier.</p></div>
+    </div>
+
+    <div class="callout try"><strong>Try this:</strong> install Cursor, open a project, place your cursor in the middle of an unfinished function, press <kbd>Tab</kbd>. Notice how it predicts a whole block, not just the next token.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> treating Cursor as "Copilot but in a new editor." Most of the value is in the agent loop, repo-wide context, and per-message model choice. If you only use Tab autocomplete, you're using 20% of the product.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> Cursor isn't an AI plug-in for VS Code. It's an editor designed from scratch around the idea that the AI is a colleague, not a snippet engine.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 2 ============== -->
+<details class="lesson" id="lesson-2">
+  <summary>
+    <span class="num">02</span>
+    <span class="heading">
+      <span class="title">The 4 ways to talk to Cursor</span>
+      <span class="subtitle">Tab &rarr; Cmd-K &rarr; Chat &rarr; Agent. Use the smallest tool that works.</span>
+    </span>
+    <span class="meta">
+      <span class="badge basic">basic</span>
+      <span class="reading-time">5 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Cursor has four interaction modes, in order of how much work you delegate. Most beginners jump to Agent for everything and end up slower &mdash; learn all four, pick the right one.</div>
+
+    <div class="illustration">
+      <img src="assets/03-chat-vs-agent.svg" alt="The four interaction modes ladder: Tab, Cmd-K, Chat, Agent" />
+      <div class="caption">From "finish my line" to "build the feature"</div>
+    </div>
+
+    <h3>1. <kbd>Tab</kbd> &mdash; multi-line, multi-file autocomplete</h3>
+    <p>
+      The single feature you'll use the most. Press <kbd>Tab</kbd> and Cursor predicts your next edit, often multiple lines at a time. The detail tutorials skip: it doesn't just complete at the cursor &mdash; it suggests <em>cursor jumps</em>. You start typing in <code>UserService.ts</code>, Tab proposes a matching change in <code>UserService.test.ts</code>. This alone is worth the subscription.
+    </p>
+    <p><strong>Best for:</strong> "the next obvious edit."</p>
+
+    <h3>2. <kbd>Ctrl+K</kbd> / <kbd>&#8984;K</kbd> &mdash; inline edit</h3>
+    <p>
+      Select some code, hit <kbd>Ctrl+K</kbd>, describe the change in plain English. Get a diff in place. Accept with <kbd>Tab</kbd>, reject with <kbd>Esc</kbd>.
+    </p>
+    <pre><button class="copy-btn">Copy</button><code>// Select these lines, press Ctrl+K, then type:
+// "convert to async/await, add error handling"
+
+function fetchUser(id) {
+  return fetch('/api/users/' + id)
+    .then(r =&gt; r.json())
+    .catch(e =&gt; console.error(e));
+}</code></pre>
+    <p><strong>Best for:</strong> renames, refactors, format conversions, "rewrite this block" tasks.</p>
+
+    <h3>3. <kbd>Ctrl+L</kbd> / <kbd>&#8984;L</kbd> &mdash; Chat</h3>
+    <p>
+      Opens a sidebar conversation. You can ask questions, get explanations, and optionally apply suggested edits. Chat is <em>read-mostly</em>: it can edit if you tell it to, but its default vibe is "let's think about this together."
+    </p>
+    <p><strong>Best for:</strong> understanding code, debugging hypotheses, "how do I&hellip;?" questions.</p>
+
+    <h3>4. <kbd>Ctrl+I</kbd> / <kbd>&#8984;I</kbd> &mdash; Agent</h3>
+    <p>
+      The autonomous one. You give a goal, the agent reads files, edits them, runs tests, loops until done. Multi-file, multi-step. Don't open this for trivial changes &mdash; it's overkill.
+    </p>
+    <p><strong>Best for:</strong> "build the feature," "fix this failing test," "migrate this module."</p>
+
+    <h3>The decision rule</h3>
+    <div class="cols-2">
+      <div class="col-card do">
+        <h4>Right tool, right job</h4>
+        <p>Line of code &rarr; <kbd>Tab</kbd></p>
+        <p>Refactor a block &rarr; <kbd>Ctrl+K</kbd></p>
+        <p>Ask a question &rarr; <kbd>Ctrl+L</kbd></p>
+        <p>Build a feature &rarr; <kbd>Ctrl+I</kbd></p>
+      </div>
+      <div class="col-card dont">
+        <h4>Wasteful patterns</h4>
+        <p>Agent for "rename a variable"</p>
+        <p>Chat for "build a whole API"</p>
+        <p>Cmd-K for "explain this code"</p>
+        <p>Ignoring Tab entirely</p>
+      </div>
+    </div>
+
+    <div class="callout try"><strong>Try this:</strong> open a file with a TODO comment. Type one line under it &mdash; <kbd>Tab</kbd> will likely predict 10. Then select an old <code>.then(...)</code> chain, <kbd>Ctrl+K</kbd>, type "async/await", accept. Now you've used two modes in 60 seconds.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> defaulting to Agent mode for everything because it "feels powerful." Agent runs spend more tokens, take longer, and require diff review. For a one-line tweak, Tab is 100x faster.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> the four modes are a trust ladder. Start at the smallest rung that gets the job done; climb only when you need to.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 3 ============== -->
+<details class="lesson" id="lesson-3">
+  <summary>
+    <span class="num">03</span>
+    <span class="heading">
+      <span class="title">The <code>@</code> symbol &mdash; feeding context</span>
+      <span class="subtitle">Every prompt should start with an @-reference. Here's why.</span>
+    </span>
+    <span class="meta">
+      <span class="badge basic">basic</span>
+      <span class="reading-time">5 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Cursor's AI is only as smart as the context you give it. Without an <code>@</code>-reference it guesses from open files. With one, it knows exactly what you mean. Make <code>@</code> a habit.</div>
+
+    <div class="illustration">
+      <img src="assets/04-agent-deep-dive.svg" alt="The @ symbol with all its reference types radiating outward" />
+      <div class="caption">Eight ways to feed Cursor exactly the context it needs</div>
+    </div>
+
+    <h3>The 8 reference types you should know</h3>
+    <ul>
+      <li><code>@file</code> &mdash; a single file by path. <em>"Look at <code>@src/auth/login.ts</code>."</em></li>
+      <li><code>@folder</code> &mdash; a whole directory. <em>"Audit <code>@src/auth/</code> for missing input validation."</em></li>
+      <li><code>@code</code> &mdash; a specific function, class, or symbol.</li>
+      <li><code>@docs</code> &mdash; indexed library documentation (React, Next.js, Stripe, &hellip;). <em>No more pasting docs into chat.</em></li>
+      <li><code>@web</code> &mdash; live web search. Great for fresh API changes the model doesn't know.</li>
+      <li><code>@git</code> &mdash; reference a diff or commit. Killer for code review.</li>
+      <li><code>@codebase</code> &mdash; RAG search across your entire repo. <em>This</em> makes "find every place we call the old payments API" actually work.</li>
+      <li><code>@past-chat</code> &mdash; reference an earlier conversation. No more re-explaining yourself.</li>
+    </ul>
+
+    <h3>A good prompt vs a bad prompt</h3>
+    <div class="cols-2">
+      <div class="col-card dont">
+        <h4>Bad &mdash; no context</h4>
+        <pre style="margin:0;font-size:0.82rem;"><code>Make the login function
+support 2FA.</code></pre>
+        <p style="margin-top:8px;color:var(--muted)">Cursor guesses which file. Often picks the wrong one. Often misses team conventions.</p>
+      </div>
+      <div class="col-card do">
+        <h4>Good &mdash; loaded with @</h4>
+        <pre style="margin:0;font-size:0.82rem;"><code>Add 2FA to @auth/login.ts.
+Use @docs (next-auth) for
+TOTP. Match patterns in
+@auth/session.ts. Add tests
+to @auth/login.test.ts.</code></pre>
+        <p style="margin-top:8px;color:var(--muted)">Cursor reads exactly the right files, learns your conventions, knows the library, writes tests.</p>
+      </div>
+    </div>
+
+    <h3>How <code>@codebase</code> actually works</h3>
+    <p>
+      Cursor splits your repo into chunks (functions, classes, doc sections), embeds them with a small model, and stores the vectors locally. When you use <code>@codebase</code>, Cursor retrieves the top-k most relevant chunks and stuffs them into the prompt. This is why it can answer "where do we set the cookie domain?" in a 500-file project without you having to know.
+    </p>
+
+    <div class="callout tip"><strong>Pro tip:</strong> you can combine multiple @-references in one prompt. <code>@docs(stripe) @file(checkout.ts) @file(checkout.test.ts)</code> gives the agent the library, the source, and the tests all at once.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> relying on whatever happens to be open in your editor as context. Open files are a hint, not a spec. Always reference what matters.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> if I could only teach you one habit, it would be: every prompt starts with <code>@</code>. Quality goes up immediately.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 4 ============== -->
+<details class="lesson" id="lesson-4">
+  <summary>
+    <span class="num">04</span>
+    <span class="heading">
+      <span class="title">Agent mode in depth</span>
+      <span class="subtitle">The autonomous loop: think &rarr; act &rarr; observe.</span>
+    </span>
+    <span class="meta">
+      <span class="badge intermediate">intermediate</span>
+      <span class="reading-time">6 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Agent mode runs a loop: pick a tool, run it, read the output, pick the next tool. Four tools, two safety nets (diffs and checkpoints). Master the anatomy of a good agent prompt.</div>
+
+    <div class="illustration">
+      <img src="assets/05-agent-mode.svg" alt="The agent with its four tools: read, edit, search, shell" />
+      <div class="caption">Four tools form one loop. Every loop iteration is a diff you can reject.</div>
+    </div>
+
+    <h3>The four tools</h3>
+    <ul>
+      <li><strong>Read</strong> &mdash; opens any file and quotes back exact lines. Working from real code, not memory.</li>
+      <li><strong>Edit</strong> &mdash; produces a structured diff. Accept or reject <em>per chunk</em>, not per file.</li>
+      <li><strong>Search</strong> &mdash; regex (ripgrep) and glob across the whole repo.</li>
+      <li><strong>Shell</strong> &mdash; runs <code>npm test</code>, git commands, installs, anything.</li>
+    </ul>
+
+    <h3>Two safety nets</h3>
+    <p>
+      <strong>Diffs first.</strong> Every edit is shown before it's applied. You can accept the whole diff, accept some chunks, edit a chunk inline, or reject everything.
+    </p>
+    <p>
+      <strong>Checkpoints.</strong> Every agent run creates a checkpoint. Went sideways? Click the checkpoint to rewind your files to before the run started. <em>You can't break things permanently in agent mode.</em>
+    </p>
+
+    <h3>The auto-run toggle</h3>
+    <p>
+      In settings there's an <em>"Auto-run safe commands"</em> toggle. Enable it and Cursor will run whitelisted commands (<code>npm test</code>, <code>ls</code>, <code>git status</code>, etc.) without pausing for confirmation. Turn it on once you trust the model &mdash; the loop becomes dramatically faster.
+    </p>
+
+    <h3>Anatomy of a great agent prompt</h3>
+    <p>Three ingredients: <strong>context</strong>, <strong>spec</strong>, <strong>verification</strong>.</p>
+    <pre><button class="copy-btn">Copy</button><code>[CONTEXT]   Add to @components/Header.tsx, reuse styling from @components/Button.tsx.
+[SPEC]      A dark-mode toggle.
+            - Persists choice in localStorage under 'theme'.
+            - Respects prefers-color-scheme on first visit.
+            - Shows a sun icon in light mode, moon in dark.
+[VERIFY]    Add a test in Header.test.tsx that toggling
+            updates document.documentElement.dataset.theme.</code></pre>
+
+    <div class="callout try"><strong>Try this:</strong> copy the prompt above into Cursor (<kbd>Ctrl+I</kbd>) on any React project that has a Header component. Watch the agent loop through 4-6 tool calls and produce a diff. Reject one chunk and see what happens.</div>
+
+    <div class="callout warn"><strong>Common mistakes:</strong>
+      <ul style="margin-top:6px;">
+        <li>Asking the agent to do <em>too much</em> in one prompt (3 features at once).</li>
+        <li>Skipping the verification step &mdash; you get code, no tests, no proof it works.</li>
+        <li>Not reading the diffs because they're long. Read them anyway. Even a fast skim catches the wrong-file bug.</li>
+      </ul>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> Context + Spec + Verification = production-quality output. Without all three you're rolling dice.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 5 ============== -->
+<details class="lesson" id="lesson-5">
+  <summary>
+    <span class="num">05</span>
+    <span class="heading">
+      <span class="title">Plan mode &mdash; design before code</span>
+      <span class="subtitle">Agent mode with one hand tied behind its back &mdash; and that's the point.</span>
+    </span>
+    <span class="meta">
+      <span class="badge intermediate">intermediate</span>
+      <span class="reading-time">4 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Plan mode = read-only research that produces a written plan you confirm before any edit. Ten minutes of planning saves an hour of un-doing.</div>
+
+    <div class="illustration">
+      <img src="assets/05-plan-mode.svg" alt="Plan mode flow: read-only research, then a plan, then execute" />
+      <div class="caption">Research &rarr; plan &rarr; you confirm &rarr; auto-switch to Agent &rarr; execute</div>
+    </div>
+
+    <h3>The three chat modes</h3>
+    <p>The dropdown at the top of the chat panel offers:</p>
+    <ul>
+      <li><strong>Ask</strong> &mdash; pure read-only conversation. No tools.</li>
+      <li><strong>Plan</strong> &mdash; can read files + use search, but cannot edit. Produces a plan you approve.</li>
+      <li><strong>Agent</strong> &mdash; full edit permission, runs the loop.</li>
+    </ul>
+
+    <h3>The Plan workflow</h3>
+    <ol>
+      <li>You describe what you want (with @-references!).</li>
+      <li>Agent reads relevant files, asks clarifying questions if needed.</li>
+      <li>It produces a written plan: files to touch, functions to add, tests to write, trade-offs.</li>
+      <li>You review. Edit the plan inline if you want.</li>
+      <li>Click <em>"Run plan"</em>. Cursor switches itself to Agent mode and executes the approved plan.</li>
+    </ol>
+
+    <h3>When to use Plan mode</h3>
+    <div class="cols-2">
+      <div class="col-card do">
+        <h4>Always Plan first</h4>
+        <p>Change touches &gt; 2 files</p>
+        <p>Auth / payments / migrations</p>
+        <p>You'd ask &ge; 3 clarifying questions</p>
+        <p>Risky refactor</p>
+        <p>Unfamiliar part of the codebase</p>
+      </div>
+      <div class="col-card dont">
+        <h4>Skip the plan</h4>
+        <p>Single-file change</p>
+        <p>Adding a unit test you've described</p>
+        <p>Renaming a variable</p>
+        <p>Anything you'd Cmd-K instead</p>
+      </div>
+    </div>
+
+    <pre><button class="copy-btn">Copy</button><code>[Plan mode prompt]
+Plan an OAuth login with Google for our Next.js app.
+- Use NextAuth (see @docs).
+- Keep guest checkout working (currently in @auth/guest.ts).
+- Persist user role from existing @models/User.ts.
+- Add e2e tests with Playwright.
+
+Do NOT write code yet. Give me a step-by-step plan
+with files, functions, and risks.</code></pre>
+
+    <div class="callout try"><strong>Try this:</strong> next time you're about to start a feature that involves &gt; 2 files, open the chat dropdown and switch to Plan mode <em>before</em> typing. Run your prompt. Read the plan. Notice what it caught that you'd have missed.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> skipping Plan mode because "I know what I want." If you knew exactly, the AI would have figured it out from your prompt anyway. The agent's plan is also a sanity-check on your own thinking.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> Plan mode is for when you're committing to a direction. The 10 minutes you spend reviewing a plan is the cheapest insurance in software.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 6 ============== -->
+<details class="lesson" id="lesson-6">
+  <summary>
+    <span class="num">06</span>
+    <span class="heading">
+      <span class="title">Rules &amp; <code>AGENTS.md</code></span>
+      <span class="subtitle">Persistent project memory. Stop repeating yourself in every prompt.</span>
+    </span>
+    <span class="meta">
+      <span class="badge advanced">advanced</span>
+      <span class="reading-time">6 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Drop markdown files into <code>.cursor/rules/</code> and Cursor reads them on every agent run. Encode your conventions once, never repeat them.</div>
+
+    <div class="illustration">
+      <img src="assets/09-pro-tips.svg" alt="Pro tips: rules, skills, MCP, hooks, slash commands" />
+      <div class="caption">Rules, skills, MCP, hooks, slash &mdash; the agent extension stack</div>
+    </div>
+
+    <h3>Three layers of persistent context</h3>
+    <ul>
+      <li><strong><code>.cursor/rules/*.mdc</code></strong> &mdash; Cursor-specific, scoped per-file via glob frontmatter.</li>
+      <li><strong><code>AGENTS.md</code></strong> at the repo root &mdash; portable, cross-tool standard (works in Cursor, Claude Code, others).</li>
+      <li><strong><code>SKILL.md</code></strong> &mdash; reusable multi-step playbooks the agent picks up automatically.</li>
+    </ul>
+
+    <h3>Example: a TypeScript rule</h3>
+    <pre><button class="copy-btn">Copy</button><code>---
+description: TypeScript &amp; React conventions for this repo.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+---
+
+# TypeScript rules
+
+- Use `pnpm`, never `npm` or `yarn`.
+- Co-locate tests: `Button.tsx` &rarr; `Button.test.tsx`.
+- Public APIs need JSDoc with `@example`.
+- Prefer `type` over `interface` unless you need declaration merging.
+- Never use `any`. Use `unknown` and narrow.
+- Server actions go in `app/actions/`. Add `"use server"` directive.
+
+# Security
+
+- Never log secrets. Use the `redact()` util.
+- Never commit `.env`. The repo has `.env.example` instead.</code></pre>
+
+    <h3>Example: <code>AGENTS.md</code> at the repo root</h3>
+    <pre><button class="copy-btn">Copy</button><code># AGENTS.md
+
+## Project
+Storefront monorepo. Web (Next.js 15) + Mobile (React Native).
+Stack: TypeScript, Tailwind, Prisma, Postgres, Stripe.
+
+## Workflows
+- Run tests: `pnpm test`
+- Run dev: `pnpm dev`
+- DB migrate: `pnpm db:migrate`
+
+## Conventions
+- All env vars go through `lib/env.ts` (zod-validated).
+- Errors use the `AppError` class in `lib/errors.ts`.
+- Date math uses `date-fns`, not native Date arithmetic.
+
+## Out of scope for the agent
+- Don't touch `legacy/` &mdash; we're sunsetting it.
+- Don't add new dependencies without asking.</code></pre>
+
+    <h3><code>SKILL.md</code> &mdash; reusable workflows</h3>
+    <p>
+      Where rules describe <em>conventions</em>, skills describe <em>processes</em>. A SKILL.md might describe "how to add a new API endpoint": create the route file, add a zod schema, write integration tests, update the OpenAPI doc. Drop it in <code>.cursor/skills/add-endpoint/SKILL.md</code> &mdash; the agent picks it up when your prompt matches.
+    </p>
+
+    <div class="callout try"><strong>Try this:</strong> create <code>.cursor/rules/style.mdc</code> with 5 conventions from your codebase. Restart Cursor. Ask the agent to add a new component &mdash; it'll match your style without you mentioning it.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> putting everything in one giant 500-line rules file. The agent has to load it every prompt &mdash; that's expensive context. Split by concern + scope with globs.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> rules are how a senior teammate would brief a new hire on day one. Write them down, and every future prompt benefits.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 7 ============== -->
+<details class="lesson" id="lesson-7">
+  <summary>
+    <span class="num">07</span>
+    <span class="heading">
+      <span class="title">MCP, Hooks &amp; Background Agents</span>
+      <span class="subtitle">Extend Cursor beyond code. Connect to Jira, Postgres, Slack, your CI.</span>
+    </span>
+    <span class="meta">
+      <span class="badge advanced">advanced</span>
+      <span class="reading-time">7 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Three power-features turn Cursor into a real agent platform: MCP servers (new tools), Hooks (event-driven scripts), Background Agents (cloud workers on their own branch).</div>
+
+    <div class="illustration">
+      <img src="assets/06-subagents.svg" alt="Parent agent spawning sub-agents and background cloud agents" />
+      <div class="caption">Parallel hands, cloud delegation, automated event hooks</div>
+    </div>
+
+    <h3>MCP &mdash; Model Context Protocol</h3>
+    <p>
+      An open spec (originally from Anthropic) for exposing tools to AI agents. Every MCP server adds new abilities to the agent. Popular ones:
+    </p>
+    <ul>
+      <li><strong>Jira / Linear</strong> &mdash; read &amp; update tickets.</li>
+      <li><strong>Postgres / MySQL</strong> &mdash; query your dev DB safely.</li>
+      <li><strong>GitHub / GitLab</strong> &mdash; full PR + issue management.</li>
+      <li><strong>Slack</strong> &mdash; post messages, read threads.</li>
+      <li><strong>Filesystem / Notion / Confluence / Stripe</strong> &mdash; the list grows daily.</li>
+    </ul>
+    <p>Configure them in <code>.cursor/mcp.json</code>:</p>
+    <pre><button class="copy-btn">Copy</button><code>{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres",
+               "postgres://localhost/myapp"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_TOKEN": "${GITHUB_TOKEN}" }
+    }
+  }
+}</code></pre>
+
+    <h3>Hooks &mdash; run scripts on agent events</h3>
+    <p>
+      A <code>hooks.json</code> in <code>.cursor/</code> lets you fire shell scripts when agent events occur: after an edit, before a tool runs, when a session starts, etc.
+    </p>
+    <pre><button class="copy-btn">Copy</button><code>{
+  "hooks": {
+    "afterEdit": "pnpm prettier --write \"$CURSOR_FILE\"",
+    "afterAccept": "pnpm test --related \"$CURSOR_FILE\"",
+    "beforeShell": "./scripts/audit-log.sh"
+  }
+}</code></pre>
+    <p>Common use cases: auto-format, auto-test, audit-log every accepted change, block destructive commands.</p>
+
+    <h3>Background Agents &mdash; the showstopper</h3>
+    <p>
+      Run a Cursor agent in the cloud, on its own branch, in a fresh sandbox. You give it a goal, walk away, come back to a PR.
+    </p>
+    <ul>
+      <li>Perfect for slow refactors, dependency upgrades, multi-repo rollouts.</li>
+      <li>Each run is isolated &mdash; no risk to your local work.</li>
+      <li>Powered by Claude / GPT under the hood, same models you use locally.</li>
+      <li>Trigger from the cloud dashboard or via the Cursor SDK from CI.</li>
+    </ul>
+
+    <h3>The power combo</h3>
+    <div class="callout tip"><strong>End-to-end automation:</strong>
+      <ol style="margin:6px 0 0 18px;">
+        <li>MCP-Jira: agent picks up tickets labeled <code>cursor-ready</code>.</li>
+        <li>Background Agent: implements the ticket on a feature branch.</li>
+        <li>Hook: when the PR is opened, posts the link back to the Jira ticket.</li>
+      </ol>
+      Zero context-switching. The agent triages, implements, and reports.
+    </div>
+
+    <div class="callout warn"><strong>Common mistakes:</strong>
+      <ul style="margin-top:6px;">
+        <li>Connecting an MCP server with too-broad permissions (read/write Postgres in production &mdash; <em>don't</em>).</li>
+        <li>Running Background Agents on huge tasks without breaking them up &mdash; you get one giant PR no one can review.</li>
+        <li>Hooks that block on long operations (use async / background scripts).</li>
+      </ul>
+    </div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> MCP turns the agent from a coder into an operator. Hooks make it conscientious. Background agents make it parallel. Together they're how senior engineers ship 3x faster.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 8 ============== -->
+<details class="lesson" id="lesson-8">
+  <summary>
+    <span class="num">08</span>
+    <span class="heading">
+      <span class="title">TDD with agents</span>
+      <span class="subtitle">Tests are the specification. The single biggest quality multiplier.</span>
+    </span>
+    <span class="meta">
+      <span class="badge advanced">advanced</span>
+      <span class="reading-time">5 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Write failing tests <em>first</em>, then ask the agent to make them pass. Tests turn vague intent into a precise spec the AI can't fake.</div>
+
+    <div class="illustration">
+      <img src="assets/07-tdd-cycle.svg" alt="Red, Green, Refactor cycle with the agent in the middle" />
+      <div class="caption">Three prompts, three stages, one safety net.</div>
+    </div>
+
+    <h3>Why TDD changes the game with AI</h3>
+    <p>
+      Without tests, the agent's output is "trust me." With tests, the agent's output is "trust the tests." That is a much better deal &mdash; and it forces you to articulate behaviour before code, which is the hard part anyway.
+    </p>
+
+    <h3>The three-prompt recipe</h3>
+    <pre><button class="copy-btn">Copy</button><code>// PROMPT 1 - RED
+Write failing tests for slugify(input: string): string.
+Cover:
+  - "Hello World"             -&gt; "hello-world"
+  - "  trimmed  "             -&gt; "trimmed"
+  - "Caf&eacute; Cr&egrave;me"             -&gt; "cafe-creme"  (strip accents)
+  - "100% PURE!"              -&gt; "100-pure"   (strip punct)
+  - ""                        -&gt; throws RangeError
+  - maxLength=20, long input  -&gt; truncated &amp; clean
+Use Vitest. Place in src/utils/slug.test.ts.
+Do NOT implement the function. Tests should be red.
+
+// PROMPT 2 - GREEN
+Now implement slugify in src/utils/slug.ts.
+Minimum code to make all tests pass.
+Use Intl.Normalize for accents.
+
+// PROMPT 3 - REFACTOR
+Refactor slugify for readability.
+Extract any helper functions.
+Tests must stay green.</code></pre>
+
+    <h3>Three rules that make TDD with AI work</h3>
+    <ol>
+      <li><strong>Tests first, no exceptions.</strong> The moment you let the agent write production code before the test, it'll write a test that conveniently passes its buggy implementation.</li>
+      <li><strong>One prompt per stage.</strong> Don't ask for red + green + refactor in one message. Each stage has different objectives.</li>
+      <li><strong>Read the test names.</strong> If the agent named a test <code>"works correctly"</code>, reject and ask for a behavioural name. Test names are documentation.</li>
+    </ol>
+
+    <div class="callout try"><strong>Try this:</strong> pick a small utility you wrote recently. Delete it. Use the three prompts above (adapted to your case) to rebuild it via TDD. Compare the result to your original &mdash; usually the TDD version has more edge cases handled.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> writing one massive test suite up-front and asking the agent to pass all of it at once. TDD works in micro-cycles: 3-5 tests at a time, iterate.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> TDD is the discipline that lets you delegate without losing control. Tests are the leash.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 9 ============== -->
+<details class="lesson" id="lesson-9">
+  <summary>
+    <span class="num">09</span>
+    <span class="heading">
+      <span class="title">Model selection</span>
+      <span class="subtitle">Match the model to the task. Three tiers, three jobs.</span>
+    </span>
+    <span class="meta">
+      <span class="badge intermediate">intermediate</span>
+      <span class="reading-time">4 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> Cursor lets you switch models per message. Use cheap models for grunt work, your daily driver for 80% of sessions, and a top-tier model only when the stakes warrant.</div>
+
+    <div class="illustration">
+      <img src="assets/08-model-selection.svg" alt="Three columns: Fast and Cheap, Daily Driver, Max Quality" />
+      <div class="caption">Three tiers. Pick by job, not by hype.</div>
+    </div>
+
+    <h3>The three tiers</h3>
+    <div class="cols-2">
+      <div class="col-card">
+        <h4 style="color:var(--muted)">Fast &amp; Cheap</h4>
+        <p><strong>Models:</strong> Haiku, GPT-4o-mini, cursor-small</p>
+        <p><strong>Cost:</strong> ~1x baseline</p>
+        <p><strong>Use for:</strong> small edits, boilerplate, parallel subagents, anything where you'd run it 20 times.</p>
+      </div>
+      <div class="col-card">
+        <h4 style="color:var(--cyan)">Daily Driver</h4>
+        <p><strong>Models:</strong> Claude Sonnet, GPT-4o, Gemini 2.5 Pro</p>
+        <p><strong>Cost:</strong> ~5x baseline</p>
+        <p><strong>Use for:</strong> feature dev, Plan mode, standard refactors. <strong>~80% of your sessions live here.</strong></p>
+      </div>
+    </div>
+    <div class="cols-2">
+      <div class="col-card" style="grid-column: 1 / -1; border-color: rgba(255,140,66,0.3);">
+        <h4 style="color:var(--orange)">Max Quality &mdash; when it matters</h4>
+        <p><strong>Models:</strong> Claude Opus, o1 / o3, GPT-5 Pro</p>
+        <p><strong>Cost:</strong> ~25x baseline</p>
+        <p><strong>Use for:</strong> complex refactors, auth/payments/security code, hard debugging, final pre-merge verification. Slow and pricy &mdash; don't run them for every prompt, but don't use Haiku for your billing service either.</p>
+      </div>
+    </div>
+
+    <h3>Auto mode &mdash; let Cursor pick</h3>
+    <p>
+      There's an "Auto" model option that lets Cursor route each message based on complexity. Convenient, but you give up control. I usually pick manually &mdash; it's two clicks and you learn the trade-offs.
+    </p>
+
+    <div class="callout tip"><strong>Pro tip:</strong> set the model <em>per repo</em>, not per session. Settings &rarr; Models &rarr; per-workspace default. Your "billing-service" workspace can default to Opus; your "marketing-site" workspace can default to Haiku.</div>
+
+    <div class="callout warn"><strong>Common mistake:</strong> defaulting to Opus for everything because it's "the best." A Cursor Pro plan has a fast-request budget. Burn it on Opus typo-fixes and you'll be rate-limited before lunch. Use the cheaper tier 80% of the time.</div>
+
+    <div class="callout takeaway"><strong>Takeaway:</strong> match the model to the cost of getting it wrong. A typo in CSS is cheap. A bug in payments is not.</div>
+  </div>
+</details>
+
+<!-- ============== LESSON 10 ============== -->
+<details class="lesson" id="lesson-10">
+  <summary>
+    <span class="num">10</span>
+    <span class="heading">
+      <span class="title">The cheat sheet</span>
+      <span class="subtitle">Everything on one page. Screenshot it.</span>
+    </span>
+    <span class="meta">
+      <span class="badge wrap">wrap-up</span>
+      <span class="reading-time">2 min</span>
+    </span>
+    <span class="chevron">&#9662;</span>
+  </summary>
+  <div class="lesson-body">
+    <div class="tldr"><strong>TL;DR</strong> One page. All the shortcuts, the decision tree, the model rules. Save this to your wall.</div>
+
+    <div class="illustration">
+      <img src="assets/10-cheat-sheet.svg" alt="Cursor shortcuts and a which-mode decision tree" />
+    </div>
+
+    <h3>Shortcuts you'll use daily</h3>
+    <div class="shortcuts">
+      <div class="row"><div class="keys"><kbd>Tab</kbd></div><div class="desc">accept autocomplete</div></div>
+      <div class="row"><div class="keys"><kbd>Ctrl</kbd>+<kbd>K</kbd></div><div class="desc">inline edit</div></div>
+      <div class="row"><div class="keys"><kbd>Ctrl</kbd>+<kbd>L</kbd></div><div class="desc">open Chat</div></div>
+      <div class="row"><div class="keys"><kbd>Ctrl</kbd>+<kbd>I</kbd></div><div class="desc">open Agent</div></div>
+      <div class="row"><div class="keys"><kbd>Ctrl</kbd>+<kbd>N</kbd></div><div class="desc">new chat</div></div>
+      <div class="row"><div class="keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></div><div class="desc">add selection to chat</div></div>
+      <div class="row"><div class="keys"><kbd>Ctrl</kbd>+<kbd>Enter</kbd></div><div class="desc">run in Agent mode</div></div>
+      <div class="row"><div class="keys"><kbd>Esc</kbd></div><div class="desc">stop / reject</div></div>
+    </div>
+
+    <h3>The <code>@</code> reference quick-list</h3>
+    <div class="shortcuts">
+      <div class="row"><div class="keys"><code>@file</code></div><div class="desc">attach a file</div></div>
+      <div class="row"><div class="keys"><code>@folder</code></div><div class="desc">attach a directory</div></div>
+      <div class="row"><div class="keys"><code>@code</code></div><div class="desc">attach a function/class</div></div>
+      <div class="row"><div class="keys"><code>@codebase</code></div><div class="desc">whole-repo RAG search</div></div>
+      <div class="row"><div class="keys"><code>@docs</code></div><div class="desc">library documentation</div></div>
+      <div class="row"><div class="keys"><code>@web</code></div><div class="desc">live web search</div></div>
+      <div class="row"><div class="keys"><code>@git</code></div><div class="desc">a diff or commit</div></div>
+      <div class="row"><div class="keys"><code>@past-chat</code></div><div class="desc">earlier session</div></div>
+    </div>
+
+    <h3>Which mode? &mdash; the decision tree</h3>
+    <ol>
+      <li>One line / next obvious edit? &rarr; <kbd>Tab</kbd></li>
+      <li>Refactor a single block? &rarr; <kbd>Ctrl+K</kbd></li>
+      <li>Just a question / explanation? &rarr; <kbd>Ctrl+L</kbd> (Chat)</li>
+      <li>Build a feature, multi-file? &rarr;
+        <ul>
+          <li>Big or unclear? &rarr; <strong>Plan mode</strong> first.</li>
+          <li>Small &amp; clear? &rarr; <kbd>Ctrl+I</kbd> (Agent) directly.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>Model picks</h3>
+    <ul>
+      <li><strong>Grunt work / parallel subagents</strong> &rarr; Haiku, GPT-4o-mini.</li>
+      <li><strong>Daily driver</strong> &rarr; Claude Sonnet, GPT-4o.</li>
+      <li><strong>When stakes are high</strong> &rarr; Claude Opus, o-series.</li>
+    </ul>
+
+    <div class="callout takeaway"><strong>The three rules to remember:</strong>
+      <ol style="margin:6px 0 0 18px;">
+        <li><strong>Tests first.</strong> They're the spec.</li>
+        <li><strong>Plan before big changes.</strong> 10 minutes saves an hour.</li>
+        <li><strong>Match the model to the stakes.</strong></li>
+      </ol>
+      That's the agentic way.
+    </div>
+  </div>
+</details>
+
+</main>
+
+<!-- ============== SIGNOFF ============== -->
+<section class="signoff">
+  <h2>You're ready.</h2>
+  <p>
+    You now know more about Cursor than 95% of its users.
+    Open the editor, pick a real project, and start at lesson 2.
+  </p>
+  <div class="takeaways">
+    <div class="takeaway-pill">
+      <strong>1. Tests first</strong>
+      They are the precise spec the AI needs.
+    </div>
+    <div class="takeaway-pill">
+      <strong>2. Plan before big changes</strong>
+      Ten minutes saves an hour.
+    </div>
+    <div class="takeaway-pill">
+      <strong>3. Match the model to the stakes</strong>
+      Haiku for typos. Opus for billing.
+    </div>
+  </div>
+  <p style="margin-top:24px;">
+    <a class="btn primary" href="slides.html" style="font-size:1rem;padding:12px 24px;">
+      Want this as a slide deck? &rarr;
+    </a>
+  </p>
+</section>
+
+<footer class="footer-meta">
+  <span>Cursor: The Agentic Way</span>
+  <span>Press <kbd>?</kbd> for help &middot; All artwork is original (royalty-free).</span>
+</footer>
+
+<script>
+  // Reading progress bar
+  const progress = document.getElementById('progress');
+  function updateProgress() {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (scrolled * 100) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Expand-all / Collapse-all
+  const lessons = document.querySelectorAll('details.lesson');
+  document.getElementById('expand-all').addEventListener('click', () => {
+    lessons.forEach(l => l.open = true);
+  });
+  document.getElementById('collapse-all').addEventListener('click', () => {
+    lessons.forEach(l => l.open = false);
+    window.scrollTo({ top: document.getElementById('contents').offsetTop - 80, behavior: 'smooth' });
+  });
+
+  // Open lesson on TOC click, auto-scroll into view
+  document.querySelectorAll('.toc a[href^="#lesson-"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el && el.tagName === 'DETAILS') {
+        el.open = true;
+      }
+    });
+  });
+
+  // Open lesson if URL has the hash on load
+  if (location.hash && location.hash.startsWith('#lesson-')) {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el && el.tagName === 'DETAILS') {
+      el.open = true;
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+
+  // Copy-to-clipboard for code blocks
+  document.querySelectorAll('pre').forEach(pre => {
+    const btn = pre.querySelector('.copy-btn');
+    if (!btn) return;
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const code = pre.querySelector('code').innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 1500);
+      } catch (err) {
+        btn.textContent = 'Failed';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+      }
+    });
+  });
+
+  // Help dialog
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '?' && !e.ctrlKey && !e.metaKey) {
+      alert(
+        'Cursor: The Agentic Way\n\n' +
+        '?      this help\n' +
+        'Click  expand / collapse a lesson\n' +
+        'Top bar: Expand all / Collapse all\n\n' +
+        'Want to record a video? See slides.html'
+      );
+    }
+  });
+</script>
+
+</body>
+</html>

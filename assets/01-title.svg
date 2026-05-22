@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Kalam, Caveat, cursive">
+  <defs>
+    <filter id="w1" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.2"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="700" fill="#0F1A2E"/>
+
+  <!-- Sparkles -->
+  <g stroke="#FFD93D" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#w1)">
+    <g transform="translate(160 140)"><line x1="-18" y1="0" x2="18" y2="0"/><line x1="0" y1="-18" x2="0" y2="18"/></g>
+    <g transform="translate(850 110)"><line x1="-14" y1="0" x2="14" y2="0"/><line x1="0" y1="-14" x2="0" y2="14"/></g>
+    <g transform="translate(120 540)"><line x1="-12" y1="0" x2="12" y2="0"/><line x1="0" y1="-12" x2="0" y2="12"/></g>
+    <g transform="translate(880 560)"><line x1="-16" y1="0" x2="16" y2="0"/><line x1="0" y1="-16" x2="0" y2="16"/></g>
+    <g transform="translate(500 90)"><line x1="-10" y1="0" x2="10" y2="0"/><line x1="0" y1="-10" x2="0" y2="10"/></g>
+  </g>
+
+  <!-- Glow ring behind robot -->
+  <circle cx="500" cy="370" r="200" fill="none" stroke="#3DD9D6" stroke-width="2" opacity="0.35" filter="url(#glow)"/>
+  <circle cx="500" cy="370" r="240" fill="none" stroke="#3DD9D6" stroke-width="1" opacity="0.18"/>
+
+  <!-- Robot mascot -->
+  <g filter="url(#w1)" stroke="#3DD9D6" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- antenna -->
+    <line x1="500" y1="200" x2="500" y2="240"/>
+    <circle cx="500" cy="195" r="8" fill="#FFD93D" stroke="#FFD93D"/>
+    <!-- head -->
+    <rect x="410" y="240" width="180" height="140" rx="22"/>
+    <!-- eyes -->
+    <circle cx="455" cy="300" r="14" fill="#FFD93D" stroke="#FFD93D"/>
+    <circle cx="545" cy="300" r="14" fill="#FFD93D" stroke="#FFD93D"/>
+    <circle cx="455" cy="300" r="5" fill="#0F1A2E" stroke="#0F1A2E"/>
+    <circle cx="545" cy="300" r="5" fill="#0F1A2E" stroke="#0F1A2E"/>
+    <!-- mouth -->
+    <path d="M460 345 Q500 365 540 345"/>
+    <!-- neck -->
+    <line x1="480" y1="380" x2="480" y2="400"/>
+    <line x1="520" y1="380" x2="520" y2="400"/>
+    <!-- body -->
+    <rect x="395" y="400" width="210" height="130" rx="18"/>
+    <circle cx="500" cy="465" r="22" stroke="#FF8C42"/>
+    <line x1="500" y1="443" x2="500" y2="487" stroke="#FF8C42"/>
+    <!-- arms -->
+    <line x1="395" y1="440" x2="340" y2="490"/>
+    <line x1="605" y1="440" x2="660" y2="490"/>
+    <circle cx="335" cy="498" r="14"/>
+    <circle cx="665" cy="498" r="14"/>
+  </g>
+
+  <!-- Cursor pointer in robot's hand -->
+  <g transform="translate(640 460)" filter="url(#w1)" stroke="#FF8C42" stroke-width="4" fill="#FF8C42" stroke-linejoin="round">
+    <polygon points="0,0 0,40 12,28 22,46 30,42 20,24 36,22"/>
+  </g>
+
+  <!-- Underline swoosh -->
+  <path d="M260 600 Q500 640 740 600" stroke="#FF8C42" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#w1)"/>
+  <path d="M280 615 Q500 650 720 615" stroke="#FF8C42" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6" filter="url(#w1)"/>
+</svg>

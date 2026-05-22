@@ -1,0 +1,266 @@
+/* ============================================================
+   Cursor: The Agentic Way - Reveal.js slide-deck theme
+   Canvas is exactly 1280x720 (set in Reveal.initialize).
+   We lay out in real pixels; Reveal scales the canvas to fit.
+   IMPORTANT: do NOT override Reveal's position/display on sections.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Caveat:wght@400;700&display=swap');
+
+:root {
+  --bg:        #0F1A2E;
+  --ink:       #F4F1E8;
+  --cyan:      #3DD9D6;
+  --orange:    #FF8C42;
+  --green:     #5FE388;
+  --red:       #FF5C5C;
+  --yellow:    #FFD93D;
+  --purple:    #B388FF;
+  --muted:     #9AA7BD;
+}
+
+html, body, .reveal-viewport, .reveal {
+  background: var(--bg) !important;
+  color: var(--ink);
+  font-family: 'Kalam', 'Comic Sans MS', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Reveal section padding only (no position / display touch) ---------- */
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides > section {
+  padding: 30px 50px !important;
+  box-sizing: border-box;
+}
+
+/* ---------- Typography (sized for the 1280x720 canvas) ---------- */
+.reveal h1, .reveal h2, .reveal h3,
+.reveal h4, .reveal h5, .reveal h6 {
+  font-family: 'Caveat', 'Kalam', cursive;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 18px rgba(61, 217, 214, 0.25);
+  margin: 0 0 14px 0;
+  line-height: 1.1;
+}
+
+.reveal h1 { font-size: 84px; }
+.reveal h2 { font-size: 50px; color: var(--cyan); }
+.reveal h3 { font-size: 32px; }
+
+.reveal p, .reveal li {
+  font-family: 'Kalam', cursive;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 6px 0;
+}
+
+.reveal em { font-style: italic; color: var(--ink); }
+.reveal strong { color: var(--ink); font-weight: 700; }
+.reveal a { color: var(--cyan); }
+
+.reveal ul { list-style: none; padding-left: 0; margin: 8px 0; }
+.reveal ul li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 8px;
+}
+.reveal ul li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+/* ---------- TITLE slide ---------- */
+.center-stage {
+  text-align: center;
+}
+.center-stage h1 {
+  font-size: 120px;
+  color: var(--cyan);
+  margin: 0;
+  line-height: 1;
+}
+.center-stage .subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: 52px;
+  color: var(--orange);
+  margin: 4px 0 16px 0;
+  line-height: 1;
+}
+.center-stage img,
+.center-stage svg {
+  width: auto;
+  max-width: 380px;
+  max-height: 280px;
+  display: block;
+  margin: 8px auto;
+}
+.center-stage .tagline {
+  font-size: 20px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+/* ---------- 2-column (text + art) ---------- */
+.slide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.slide-grid.img-right { grid-template-columns: 1.05fr 1fr; }
+.slide-grid.img-left  { grid-template-columns: 1fr 1.05fr; }
+
+.slide-grid .copy h2 { margin-top: 0; }
+.slide-grid .copy ul li { font-size: 21px; }
+
+.slide-grid .art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide-grid img,
+.slide-grid svg {
+  max-width: 100%;
+  max-height: 460px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Full-art (image dominant) ---------- */
+.full-art {
+  text-align: center;
+}
+.full-art h2 {
+  text-align: center;
+  margin: 0 0 12px 0;
+}
+.full-art img,
+.full-art svg {
+  max-width: 100%;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.full-art.with-footer img,
+.full-art.with-footer svg {
+  max-height: 420px;
+}
+.slide-grid.with-footer img,
+.slide-grid.with-footer svg {
+  max-height: 400px;
+}
+
+/* ---------- Footer callout (normal flow - NO absolute) ---------- */
+.slide-footer {
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-left: 5px solid var(--cyan);
+  background: rgba(61, 217, 214, 0.08);
+  border-radius: 0 12px 12px 0;
+  font-size: 18px;
+  line-height: 1.45;
+  font-family: 'Kalam', cursive;
+  text-align: left;
+}
+.slide-footer .label {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  color: var(--cyan);
+  margin-right: 10px;
+  font-weight: 700;
+}
+.slide-footer.orange { border-left-color: var(--orange); background: rgba(255, 140, 66, 0.08); }
+.slide-footer.orange .label { color: var(--orange); }
+.slide-footer.green  { border-left-color: var(--green);  background: rgba(95, 227, 136, 0.08); }
+.slide-footer.green  .label { color: var(--green); }
+.slide-footer.yellow { border-left-color: var(--yellow); background: rgba(255, 217, 61, 0.08); }
+.slide-footer.yellow .label { color: var(--yellow); }
+.slide-footer.purple { border-left-color: var(--purple); background: rgba(179, 136, 255, 0.08); }
+.slide-footer.purple .label { color: var(--purple); }
+
+.slide-footer code,
+.kbd {
+  font-family: 'Consolas', 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 1px 8px;
+  font-size: 0.92em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.85em;
+  font-weight: 700;
+  margin-right: 6px;
+  border: 1.5px solid currentColor;
+}
+
+.muted-note {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ---------- Color helpers ---------- */
+.txt-cyan   { color: var(--cyan); }
+.txt-orange { color: var(--orange); }
+.txt-green  { color: var(--green); }
+.txt-red    { color: var(--red); }
+.txt-yellow { color: var(--yellow); }
+.txt-purple { color: var(--purple); }
+.txt-muted  { color: var(--muted); }
+
+/* ---------- Reveal UI ---------- */
+.reveal .slide-number {
+  font-family: 'Kalam', cursive;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.7em;
+  right: 16px;
+  bottom: 8px;
+}
+.reveal .progress {
+  color: var(--cyan);
+  height: 4px;
+}
+.reveal .controls { color: var(--cyan); }
+.reveal .controls button.enabled { opacity: 0.8; }
+.reveal .controls button.enabled:hover { opacity: 1; }
+
+/* ---------- Mobile / touch ---------- */
+@media (pointer: coarse) {
+  .reveal .controls { --controls-arrow-size: 3rem; }
+}
+@media (max-width: 600px) {
+  .reveal .slide-number { font-size: 0.6em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section { transition: none !important; }
+}
+
+@media print {
+  html, body, .reveal { background: var(--bg) !important; }
+}

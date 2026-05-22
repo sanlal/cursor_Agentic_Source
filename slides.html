@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F1A2E" />
+  <meta name="description" content="Cursor: The Agentic Way - 10 slides from beginner to advanced. Tab, Cmd-K, @-references, Agent mode, Plan mode, Rules, MCP, TDD, model selection." />
+
+  <meta property="og:title" content="Cursor: The Agentic Way" />
+  <meta property="og:description" content="A 10-slide tour of Cursor from your first Tab to background agents." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/01-title.svg" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <title>Cursor: The Agentic Way</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/01-title.svg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============== SLIDE 1: TITLE ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="center-stage">
+          <h1>Cursor</h1>
+          <p class="subtitle">The Agentic Way</p>
+          <img src="assets/01-title.svg" alt="Cursor agent mascot" />
+          <p class="tagline">10 slides &middot; beginner &rarr; advanced &middot; ~15 min</p>
+        </div>
+        <aside class="notes">
+          Welcome. Cursor is the most-talked-about AI code editor of the last two years - and most tutorials only scratch the surface. In the next 10 slides we'll go from your very first day with Cursor (Tab autocomplete and Cmd-K) to power-user moves like custom rules, MCP servers, background agents, and test-driven workflows. By slide 10 you'll know exactly what to use when - and have a single cheat sheet to keep beside you.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 2: WHAT IS CURSOR ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="slide-grid img-right with-footer">
+          <div class="copy">
+            <h2>What is Cursor?</h2>
+            <ul>
+              <li>An <span class="txt-orange">AI-native IDE</span> &mdash; a fork of VS Code by Anysphere</li>
+              <li>Same keybindings, extensions &amp; themes work out of the box</li>
+              <li>Indexes your repo so the AI <em>sees</em> the codebase</li>
+              <li>Bring your own model: Claude, GPT, Gemini, Grok, o-series</li>
+              <li><span class="txt-yellow">Privacy Mode</span>: code never stored or trained on</li>
+              <li>Free Hobby tier &middot; Pro <span class="kbd">$20/mo</span> &middot; Business <span class="kbd">$40/mo</span></li>
+            </ul>
+          </div>
+          <div class="art">
+            <img src="assets/02-what-is-cursor.svg" alt="VS Code plus AI brain equals Cursor" />
+          </div>
+        </div>
+        <div class="slide-footer orange">
+          <span class="label">Install (60 seconds):</span>
+          go to <code>cursor.com</code> &rarr; download &rarr; sign in &rarr; "Import VS Code settings" on first run &rarr; open any repo, hit <span class="kbd">Tab</span> on a half-written line.
+        </div>
+        <aside class="notes">
+          Cursor is a fork of VS Code with AI as a first-class citizen. Your keybindings, extensions, settings - all carry over via the import wizard on first launch. The two things that make it different from a Copilot plug-in: first, Cursor indexes your entire repo so the AI has real codebase awareness; and second, you can pick your model per message - Claude Sonnet for daily work, Opus for hard refactors, GPT-4o for speed. Privacy mode is one toggle in settings and means your code never leaves your machine for training. Free tier is generous; Pro at twenty dollars a month unlocks the frontier models and unlimited fast requests.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 3: 4 WAYS TO TALK TO CURSOR ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="full-art with-footer">
+          <h2>The 4 ways to talk to Cursor</h2>
+          <img src="assets/03-chat-vs-agent.svg" alt="Tab, Cmd-K, Chat, Agent - the four interaction modes" />
+        </div>
+        <div class="slide-footer yellow">
+          <span class="label">Rule of thumb:</span>
+          start at the smallest level that gets the job done.
+          <span class="kbd">Tab</span> finishes your line.
+          <span class="kbd">Ctrl+K</span> rewrites a block.
+          <span class="kbd">Ctrl+L</span> asks a question.
+          <span class="kbd">Ctrl+I</span> builds the feature.
+        </div>
+        <aside class="notes">
+          This is the single most important slide for new users. Cursor has four interaction modes, in increasing order of how much work you delegate. Tab autocomplete - the killer feature. It predicts your next edit, even across files. Cmd-K - select code, describe a change, get a diff in place. Chat with Ctrl-L - sidebar Q&A; can apply edits if you ask. And Agent with Ctrl-I - autonomous, multi-file, uses tools. Beginners often jump straight to Agent for everything. Don't. Use the smallest tool that works: tab for a line, Cmd-K for a block, chat for a question, agent for a feature. You'll be 3x faster.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 4: THE @ SYMBOL ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="full-art with-footer">
+          <h2>The <span class="txt-cyan">@</span> symbol &mdash; feed Cursor context</h2>
+          <img src="assets/04-agent-deep-dive.svg" alt="The @ symbol with all reference types: file, folder, code, docs, web, git, codebase, past chat" />
+        </div>
+        <div class="slide-footer green">
+          <span class="label">Try this in Chat:</span>
+          <em>"Compare <code>@auth/login.ts</code> with <code>@auth/oauth.ts</code> and pull shared logic into a util. Use <code>@docs</code> for NextAuth idioms."</em>
+          <div class="muted-note">No <code>@codebase</code> = AI guesses from open files only. Always reference what matters - quality jumps immediately.</div>
+        </div>
+        <aside class="notes">
+          The @ symbol is the second killer feature most beginners ignore. Cursor's AI is only as smart as the context you give it. @file pulls a single file. @folder pulls a directory. @code pulls a specific function or class. @docs lets you reference indexed library docs - React, Next.js, Stripe, hundreds of libraries. @web does a live web search. @git pulls a diff or commit history. @codebase does retrieval across your whole repo using embeddings. And @past-chat references an earlier session. Every prompt should start with one or two @-references. It is the difference between Cursor guessing and Cursor knowing.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 5: AGENT MODE ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="slide-grid img-left with-footer">
+          <div class="art">
+            <img src="assets/05-agent-mode.svg" alt="Agent loop with READ, EDIT, SEARCH, SHELL tools" />
+          </div>
+          <div class="copy">
+            <h2>Agent mode in depth</h2>
+            <ul>
+              <li><span class="txt-yellow">Reads</span> any file, quotes back exact lines</li>
+              <li><span class="txt-orange">Edits</span> as diffs &mdash; accept / reject per chunk</li>
+              <li><span class="txt-purple">Searches</span> via grep/glob across the repo</li>
+              <li><span class="txt-cyan">Runs shell</span>: <code>npm test</code>, git, installs</li>
+              <li><span class="txt-green">Checkpoints</span>: rollback to any earlier state</li>
+              <li><span class="kbd">Auto-run</span> toggle: accept safe commands automatically</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-footer green">
+          <span class="label">Try this:</span>
+          <em>"Add a dark-mode toggle in <code>@components/Header.tsx</code>. Persist in localStorage. Respect <code>prefers-color-scheme</code>. Add a test."</em>
+        </div>
+        <aside class="notes">
+          Agent mode is the autonomous one. Open it with Ctrl-I. You give it a goal; it picks a tool, runs it, reads the output, picks the next tool. The four tools are read, edit, search, shell. Two safety nets you should know about: every edit is shown as a diff before you accept - per chunk, not per file. And every agent run creates a checkpoint, so you can rewind to any earlier state if it went sideways. There's an auto-run toggle that whitelists "safe" shell commands so the loop doesn't pause on every npm install - turn it on once you trust the model. The example prompt at the bottom is a real one I'd give the agent: notice the @-reference, the specific behaviour spec, and the "add a test" at the end - that's how to get production-quality output.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 6: PLAN MODE ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="full-art with-footer">
+          <h2>Plan Mode &mdash; design before code</h2>
+          <img src="assets/05-plan-mode.svg" alt="Plan mode: read-only research, then a plan, then execute" />
+        </div>
+        <div class="slide-footer purple">
+          <span class="label">Use Plan when:</span>
+          change touches <span class="txt-orange">&gt;2 files</span> &middot; involves <span class="txt-orange">auth, payments, migrations</span> &middot; requirements are fuzzy &middot; you'd otherwise ask 3+ clarifying questions.
+          <div class="muted-note">Toggle the mode dropdown (Plan / Agent / Ask) at the top of the chat pane. Plan produces a written checklist you confirm before any edit happens.</div>
+        </div>
+        <aside class="notes">
+          Plan mode is Agent mode with one hand tied behind its back - and that's exactly the point. In Plan mode, the agent can read your code but can't edit anything. It does the research, asks you clarifying questions, then produces a written plan: which files it'll touch, what tests it'll add, what trade-offs it sees. You review the plan. If you like it, you confirm and it switches itself to Agent mode and executes. If you don't, you tweak the plan and re-run. The rule I follow: any change that touches more than two files, or anything in auth, payments, billing, or migrations - I always start in Plan mode. Ten minutes of planning saves an hour of undoing.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 7: RULES & AGENTS.md ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="slide-grid img-right with-footer">
+          <div class="copy">
+            <h2>Rules &amp; AGENTS.md</h2>
+            <ul>
+              <li><code>.cursor/rules/*.mdc</code> &mdash; project-scoped instructions</li>
+              <li><code>AGENTS.md</code> &mdash; portable, repo-root manifest</li>
+              <li>Read on <em>every</em> agent invocation &mdash; no per-prompt repeat</li>
+              <li>Encode standards: package mgr, test layout, naming, security</li>
+              <li>Use <code>globs:</code> frontmatter to scope rules per file type</li>
+              <li>Bonus: <code>SKILL.md</code> for reusable multi-step playbooks</li>
+            </ul>
+          </div>
+          <div class="art">
+            <img src="assets/09-pro-tips.svg" alt="Lightbulb with rules, skills, MCP, hooks, slash commands rays" />
+          </div>
+        </div>
+        <div class="slide-footer yellow">
+          <span class="label">Example rule:</span>
+          <em>"Always use <code>pnpm</code>, never <code>npm</code>. Co-locate tests as <code>*.test.ts</code>. Public APIs need JSDoc. Never commit <code>.env</code>."</em>
+        </div>
+        <aside class="notes">
+          Once you start using Cursor at work, you'll get tired of writing the same instructions every prompt. "Use pnpm, not npm." "Tests live next to source." "We use Vitest, not Jest." Rules fix this. Drop a markdown file inside dot-cursor-slash-rules and Cursor reads it on every agent run. The .mdc extension lets you add frontmatter - globs that scope a rule to certain file types, or a description that lets the agent decide if the rule applies. AGENTS.md is a newer, cross-tool standard at the repo root that works in Cursor, Claude Code, and others. And SKILL.md files describe reusable workflows the agent picks up automatically. These three together turn a fresh repo into an agent-ready repo.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 8: MCP, HOOKS, BACKGROUND ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="slide-grid img-left with-footer">
+          <div class="art">
+            <img src="assets/06-subagents.svg" alt="Parent agent spawning subagents and background cloud agents" />
+          </div>
+          <div class="copy">
+            <h2>MCP, Hooks, Background</h2>
+            <ul>
+              <li><span class="txt-cyan">MCP servers</span>: give the agent new tools</li>
+              <li>&mdash; Jira, Slack, Postgres, GitHub, Confluence...</li>
+              <li><span class="txt-purple">Hooks</span> (<code>hooks.json</code>): run scripts on agent events</li>
+              <li>&mdash; auto-format, auto-test, audit-log every edit</li>
+              <li><span class="txt-orange">Background Agents</span>: run in the cloud, on a branch</li>
+              <li>&mdash; perfect for slow refactors &amp; multi-repo work</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-footer orange">
+          <span class="label">Power combo:</span>
+          MCP-Jira lets the agent pick up tickets; Background Agent implements; Hook posts the PR link back to the Jira ticket. Zero context-switching.
+        </div>
+        <aside class="notes">
+          These three features turn Cursor from a code editor into an actual agent platform. MCP - Model Context Protocol - is an open spec from Anthropic. Any MCP server exposes tools the agent can call: Jira to read tickets, Postgres to query a database, GitHub to manage PRs. Hooks - hooks.json in dot-cursor - let you run shell scripts when certain agent events fire: auto-format on edit, auto-test on save, audit-log every accepted diff. Background Agents are the showstopper: kick off a long task, it runs in the cloud on its own branch in a clean sandbox, and you get a PR when it's done. You can fire off a refactor before lunch and review it after. Combined, these are how senior engineers ship 3x faster with Cursor.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 9: TDD WITH AGENTS ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="full-art with-footer">
+          <img src="assets/07-tdd-cycle.svg" alt="TDD with agents: Red, Green, Refactor cycle with agent in the middle" />
+        </div>
+        <div class="slide-footer green">
+          <span class="label">The 3-step prompt:</span>
+          1) <em>"Write failing tests for <code>slugify(str)</code>: spaces, accents, empties, max length."</em>
+          2) <em>"Now make the tests pass &mdash; minimum code only."</em>
+          3) <em>"Refactor for readability. Tests must stay green."</em>
+        </div>
+        <aside class="notes">
+          The single biggest quality multiplier when working with agents is test-driven development. The cycle is Red, Green, Refactor. Red - you ask the agent to write failing tests first. This is the magic step: those tests become a precise specification the AI has to satisfy. No more "looks right but doesn't work." Green - the agent writes the minimum code to pass. Because the tests exist, you know exactly when it's done. Refactor - the agent cleans up, with the tests as a safety net. The three example prompts at the bottom are the actual prompts I use - notice they're written one at a time, not as a single big request. Iterative prompts give the agent shorter feedback loops and dramatically better output.
+        </aside>
+      </section>
+
+      <!-- ============== SLIDE 10: CHEAT SHEET ============== -->
+      <section data-background-color="#0F1A2E">
+        <div class="full-art with-footer">
+          <h2>The Cheat Sheet</h2>
+          <img src="assets/10-cheat-sheet.svg" alt="Cursor shortcuts and a which-mode decision tree" />
+        </div>
+        <div class="slide-footer">
+          <span class="label">Model picks:</span>
+          <span class="txt-muted">grunt work</span> &rarr; Haiku / GPT-4o-mini &middot;
+          <span class="txt-cyan">daily driver</span> &rarr; Claude Sonnet / GPT-4o &middot;
+          <span class="txt-orange">when it matters</span> &rarr; Claude Opus / o-series.
+          <div class="muted-note">Three rules: <strong>tests first</strong>, <strong>plan before big changes</strong>, <strong>match the model to the stakes</strong>. That's the agentic way.</div>
+        </div>
+        <aside class="notes">
+          The cheat sheet. Pause the video here, screenshot this slide, save it. Left side - every shortcut you'll use daily. Right side - a decision tree: need code changed? No - use Chat. Yes - is it big or unclear? Yes - start in Plan. No - go straight to Agent. And at the bottom, the model selection rule of thumb. Three things to remember if you forget everything else: tests first, plan before big changes, match the model to the stakes. That's the agentic way. Thanks for watching - links to all the rules templates and the slide deck source are in the description. Subscribe for more Cursor deep-dives. Happy shipping.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      controlsTutorial: false,
+      controlsLayout: 'bottom-right',
+      progress: true,
+      center: true,            // let Reveal handle vertical centering
+      touch: true,
+      keyboard: true,
+      overview: true,
+      respondToHashChanges: true,
+      transition: 'fade',
+      backgroundTransition: 'fade',
+      width: 1280,
+      height: 720,
+      margin: 0.04,            // 4% all-round margin around the 1280x720 canvas
+      minScale: 0.2,
+      maxScale: 2.0,
+      viewDistance: 3,
+      plugins: [ RevealNotes ],
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '?' || e.key === '/') {
+        alert('Cursor: The Agentic Way\n\nArrow keys / Space - navigate\nF - fullscreen\nS - speaker notes\nO - overview\nEsc - exit');
+      }
+    });
+  </script>
+</body>
+</html>

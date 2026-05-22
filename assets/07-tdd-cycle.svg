@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Kalam, Caveat, cursive">
+  <defs>
+    <filter id="w7" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="23"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.2"/>
+    </filter>
+    <filter id="glow7">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="700" fill="#0F1A2E"/>
+
+  <!-- Title -->
+  <text x="500" y="60" font-size="40" fill="#F4F1E8" text-anchor="middle" font-weight="700">TDD WITH AGENTS</text>
+  <text x="500" y="95" font-size="22" fill="#9AA7BD" text-anchor="middle">Tests = Specifications for AI</text>
+
+  <!-- Curved arrows around the cycle (clockwise) -->
+  <g stroke="#F4F1E8" stroke-width="3" fill="none" opacity="0.7" filter="url(#w7)">
+    <!-- top to bottom-right -->
+    <path d="M 620 230 Q 760 320 710 470" stroke-dasharray="0"/>
+    <polygon points="710,470 705,452 722,460" fill="#F4F1E8"/>
+    <!-- bottom-right to bottom-left -->
+    <path d="M 620 540 Q 500 590 380 540"/>
+    <polygon points="380,540 398,538 390,553" fill="#F4F1E8"/>
+    <!-- bottom-left to top -->
+    <path d="M 290 470 Q 240 320 380 230"/>
+    <polygon points="380,230 363,234 372,248" fill="#F4F1E8"/>
+  </g>
+
+  <!-- RED circle (top) -->
+  <g filter="url(#w7)">
+    <circle cx="500" cy="220" r="110" fill="none" stroke="#FF5C5C" stroke-width="5"/>
+    <circle cx="500" cy="220" r="125" fill="none" stroke="#FF5C5C" stroke-width="2" opacity="0.4"/>
+  </g>
+  <text x="500" y="180" font-size="32" fill="#FF5C5C" text-anchor="middle" font-weight="700">RED</text>
+  <!-- big X inside -->
+  <g stroke="#FF5C5C" stroke-width="6" stroke-linecap="round" filter="url(#w7)">
+    <line x1="475" y1="195" x2="510" y2="230"/>
+    <line x1="510" y1="195" x2="475" y2="230"/>
+  </g>
+  <text x="500" y="265" font-size="20" fill="#F4F1E8" text-anchor="middle">Write tests</text>
+  <text x="500" y="290" font-size="20" fill="#F4F1E8" text-anchor="middle">FIRST</text>
+  <!-- scatter X marks around -->
+  <g stroke="#FF5C5C" stroke-width="4" stroke-linecap="round">
+    <g transform="translate(380 130)"><line x1="-8" y1="-8" x2="8" y2="8"/><line x1="8" y1="-8" x2="-8" y2="8"/></g>
+    <g transform="translate(620 140)"><line x1="-8" y1="-8" x2="8" y2="8"/><line x1="8" y1="-8" x2="-8" y2="8"/></g>
+    <g transform="translate(640 220)"><line x1="-7" y1="-7" x2="7" y2="7"/><line x1="7" y1="-7" x2="-7" y2="7"/></g>
+    <g transform="translate(360 230)"><line x1="-7" y1="-7" x2="7" y2="7"/><line x1="7" y1="-7" x2="-7" y2="7"/></g>
+  </g>
+  <text x="270" y="170" font-size="20" fill="#F4F1E8" text-anchor="end">Agent writes</text>
+  <text x="270" y="195" font-size="20" fill="#F4F1E8" text-anchor="end">tests</text>
+  <path d="M 280 180 Q 340 160 390 170" stroke="#F4F1E8" stroke-width="2" fill="none"/>
+
+  <!-- GREEN circle (bottom-right) -->
+  <g filter="url(#w7)">
+    <circle cx="700" cy="510" r="110" fill="none" stroke="#5FE388" stroke-width="5"/>
+    <circle cx="700" cy="510" r="125" fill="none" stroke="#5FE388" stroke-width="2" opacity="0.4"/>
+  </g>
+  <text x="700" y="470" font-size="32" fill="#5FE388" text-anchor="middle" font-weight="700">GREEN</text>
+  <!-- big check inside -->
+  <g stroke="#5FE388" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#w7)">
+    <polyline points="675,510 695,530 725,495"/>
+  </g>
+  <text x="700" y="560" font-size="20" fill="#F4F1E8" text-anchor="middle">Implement</text>
+  <text x="700" y="585" font-size="20" fill="#F4F1E8" text-anchor="middle">to pass</text>
+  <!-- scatter checks -->
+  <g stroke="#5FE388" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="830,460 838,468 850,452"/>
+    <polyline points="830,490 838,498 850,482"/>
+    <polyline points="830,520 838,528 850,512"/>
+    <polyline points="830,550 838,558 850,542"/>
+  </g>
+  <text x="855" y="380" font-size="20" fill="#F4F1E8">Agent writes</text>
+  <text x="855" y="405" font-size="20" fill="#F4F1E8">code</text>
+  <path d="M 860 395 Q 810 430 770 450" stroke="#F4F1E8" stroke-width="2" fill="none"/>
+
+  <!-- REFACTOR circle (bottom-left) -->
+  <g filter="url(#w7)">
+    <circle cx="300" cy="510" r="110" fill="none" stroke="#FF8C42" stroke-width="5"/>
+    <circle cx="300" cy="510" r="125" fill="none" stroke="#FF8C42" stroke-width="2" opacity="0.4"/>
+  </g>
+  <text x="300" y="470" font-size="28" fill="#FF8C42" text-anchor="middle" font-weight="700">REFACTOR</text>
+  <!-- sparkle + gear -->
+  <g stroke="#FF8C42" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#w7)">
+    <g transform="translate(275 510)">
+      <line x1="-12" y1="0" x2="12" y2="0"/>
+      <line x1="0" y1="-12" x2="0" y2="12"/>
+      <line x1="-8" y1="-8" x2="8" y2="8"/>
+      <line x1="8" y1="-8" x2="-8" y2="8"/>
+    </g>
+    <g transform="translate(325 510)">
+      <circle cx="0" cy="0" r="11"/>
+      <line x1="0" y1="-17" x2="0" y2="-22"/>
+      <line x1="0" y1="17" x2="0" y2="22"/>
+      <line x1="-17" y1="0" x2="-22" y2="0"/>
+      <line x1="17" y1="0" x2="22" y2="0"/>
+    </g>
+  </g>
+  <text x="300" y="560" font-size="20" fill="#F4F1E8" text-anchor="middle">Clean up</text>
+  <text x="300" y="585" font-size="20" fill="#F4F1E8" text-anchor="middle">safely</text>
+  <text x="140" y="395" font-size="20" fill="#F4F1E8">Tests guard</text>
+  <text x="140" y="420" font-size="20" fill="#F4F1E8">behavior</text>
+  <path d="M 150 410 Q 200 440 240 460" stroke="#F4F1E8" stroke-width="2" fill="none"/>
+
+  <!-- Center AGENT mascot -->
+  <g filter="url(#w7)" stroke="#3DD9D6" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(500 380)">
+    <line x1="0" y1="-50" x2="0" y2="-38"/>
+    <circle cx="0" cy="-54" r="4" fill="#FFD93D" stroke="#FFD93D"/>
+    <rect x="-35" y="-38" width="70" height="50" rx="8"/>
+    <circle cx="-13" cy="-22" r="5" fill="#FFD93D" stroke="#FFD93D"/>
+    <circle cx="13" cy="-22" r="5" fill="#FFD93D" stroke="#FFD93D"/>
+    <path d="M -8 -5 Q 0 1 8 -5"/>
+    <rect x="-40" y="15" width="80" height="40" rx="6"/>
+    <!-- mini arms -->
+    <line x1="-40" y1="28" x2="-55" y2="40"/>
+    <line x1="40" y1="28" x2="55" y2="40"/>
+  </g>
+  <rect x="450" y="445" width="100" height="36" rx="10" stroke="#3DD9D6" stroke-width="3" fill="none" filter="url(#w7)"/>
+  <text x="500" y="470" font-size="22" fill="#3DD9D6" text-anchor="middle">AGENT</text>
+
+  <!-- Inward arrows from center to each circle -->
+  <g stroke="#3DD9D6" stroke-width="2" fill="none" stroke-dasharray="5 5" opacity="0.6">
+    <line x1="500" y1="350" x2="500" y2="310"/>
+    <line x1="540" y1="450" x2="620" y2="490"/>
+    <line x1="460" y1="450" x2="380" y2="490"/>
+  </g>
+</svg>
